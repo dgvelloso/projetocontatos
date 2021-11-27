@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+ 
+        <div class="card">
+            <div class="card-body">
+ 
+                <h5 class="card-title">Criar conta de usuário</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Preencha os campos abaixo para criar sua conta de acesso ao
+                    sistema</h6>
+ 
+                <hr />
+
+                <div *ngIf="mensagem_sucesso" class="alert alert-success mb-3">
+                    Sucesso! {{mensagem_sucesso}}
+                </div>
+
+                <div *ngIf="mensagem_erro" class="alert alert-danger mb-3">
+                    Erro! {{mensagem_erro}}
+                </div>
+ 
+ 
+                <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+ 
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label>Informe seu nome:</label>
+                            <input type="text" class="form-control" formControlName="nome" 
+                            [readonly]="isLoading" />
+ 
+                            <div *ngIf="form.nome.touched && form.nome.invalid" class="text-danger">
+                                <div *ngIf="form.nome.errors.required">
+                                   Informe o seu nome, amada
+                                </div>
+                                <div *ngIf="form.nome.errors.minlength">
+                                   Mínimo 10 caracteres, amada
+                                </div>
+                                <div *ngIf="form.nome.errors.maxlength">
+                                    Máximo 150 caracteres, amada
+                                </div>
+                            </div>
+ 
+                        </div>
+                        <div class="col-md-6">
+                            <label>Informe seu email:</label>
+                            <input type="email" class="form-control" formControlName="email" 
+                            [readonly]="isLoading"/>
+ 
+                            <div *ngIf="form.email.touched && form.email.invalid" class="text-danger">
+                                <div *ngIf="form.email.errors.required">
+                                    Informe o seu email, querida
+                                </div>
+                                <div *ngIf="form.email.errors.email">
+                                    Informe um email válido, amada
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label>Informe sua senha de acesso:</label>
+                            <input type="password" class="form-control" formControlName="senha" 
+                            [readonly]="isLoading"/>
+ 
+                            <div *ngIf="form.senha.touched && form.senha.invalid" class="text-danger">
+                                <div *ngIf="form.senha.errors.required">
+                                    Informe sua senha de acesso, Dory
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Confirme sua senha de acesso:</label>
+                            <input type="password" class="form-control" formControlName="senhaConfirmacao" 
+                            [readonly]="isLoading"/>
+ 
+                            <div *ngIf="form.senhaConfirmacao.touched && form.senhaConfirmacao.invalid"
+                                class="text-danger">
+                                <div *ngIf="form.senhaConfirmacao.errors.required">
+                                    Confirme sua senha de acesso, lindinha.
+                                </div>
+                            </div>
+ 
+                        </div>
+                    </div>
+ 
+                    <div class="row mb-3">
+                        <div class="col-md-12 text-end">
+                            <input type="button" class="btn btn-secondary" value="Cancelar" 
+                            [disabled]="isLoading"/>
+                            &nbsp;
+                            <input type="submit" class="btn btn-success" [disabled]="!formRegister.valid"
+                                value="Realizar cadastro" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3" *ngIf="isLoading" >                        
+                        <div class="col-md-12 text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+
+                            <div class="mt-2">
+                                <p>Processando requisição, por favor aguarde.</p>
+                            </div>
+
+                        </div>
+                    </div>
+ 
+                </form>
+ 
+            </div>
+        </div>
+ 
+    </div>
+</div>
+
+
+
+
